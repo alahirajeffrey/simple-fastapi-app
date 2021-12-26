@@ -3,7 +3,7 @@ from fastapi import FastAPI
 # instatiate app
 app = FastAPI()
 
-# fake database
+# fake user database
 fake_db = [
     {'id': 1, 'name': 'jeffrey'},
     {'id': 2, 'name': 'alahira'},
@@ -11,22 +11,16 @@ fake_db = [
 ]
 
 # root route
-
-
 @app.get('/')
 async def root():
     return ("Simple fastapi app")
 
 # get all users
-
-
 @app.get('/users')
 def get_all_users():
     return (fake_db)
 
 # get single user
-
-
 @app.get("/users/{id}")
 def get_single_user(id: int):
     for user in fake_db:
@@ -34,8 +28,6 @@ def get_single_user(id: int):
             return (user)
 
 # delete single user
-
-
 @app.delete("/users/{id}")
 def delete_single_user(id: int):
     for user in fake_db:
@@ -44,16 +36,12 @@ def delete_single_user(id: int):
             return (fake_db)
 
 # create user
-
-
 @app.post("/users")
 def create_user(user: dict):
     fake_db.append(user)
     return (fake_db)
 
 # update user
-
-
 @app.put('/users{id}')
 def update_user(id: int, body: dict):
     for user in fake_db:
