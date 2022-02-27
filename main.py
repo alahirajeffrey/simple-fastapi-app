@@ -12,7 +12,7 @@ fake_db = [
 
 # root route
 @app.get('/')
-async def root():
+def root():
     return ("Simple fastapi app")
 
 # get all users
